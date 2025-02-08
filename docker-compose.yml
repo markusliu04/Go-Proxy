@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  proxy:
+    build: .
+    ports:
+      - "2888:2888"
+    environment:
+      - SERVER_PORT=2888
+      - PUBLIC_IP=172.210.16.43
+      - IMAGE_STORAGE_PATH=/data/images
+      - LOCAL_API_URL=http://host.docker.internal:3000
+    volumes:
+      - ./data:/data
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway" 
