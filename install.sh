@@ -38,6 +38,9 @@ echo "验证 Docker 安装..."
 docker --version
 docker compose version
 
+mkdir Cloud
+cd Cloud
+
 # 获取公网 IP 地址
 echo "获取公网 IP 地址..."
 PUBLIC_IP=$(curl -s https://ifconfig.me)
