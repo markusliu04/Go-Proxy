@@ -38,8 +38,9 @@ echo "验证 Docker 安装..."
 docker --version
 docker compose version
 
-mkdir Cloud
-cd Cloud
+# 创建工作目录
+mkdir -p ~/Cloud
+cd ~/Cloud
 
 # 获取公网 IP 地址
 echo "获取公网 IP 地址..."
@@ -67,7 +68,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
-      - SQL_DSN=Chatify:sk-chatify-MoLu154!@tcp(database.tenclock.shop:3306)/Cloud
+      - SQL_DSN=用户名:密码@tcp(数据库地址:端口)/数据库名
       - SESSION_SECRET=Cloud
       - BATCH_UPDATE_ENABLED=true
       - BATCH_UPDATE_INTERVAL=15
@@ -87,7 +88,10 @@ services:
       options:
         max-size: "100m"
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\\\"success\\\":\\\\s*true' | awk -F: '{print \\\$\\\$2}'"]
+      test:
+        - CMD-SHELL
+        - |
+          curl -f http://localhost:3000/api/status || exit 1
       interval: 30s
       timeout: 10s
       retries: 3
@@ -153,4 +157,4 @@ sleep 5
 echo "当前运行的容器状态："
 docker ps
 
-echo "脚本执行完成。"
+echo "脚本执行完成。请根据需要检查服务是否正常运行。"
