@@ -68,7 +68,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
-      - SQL_DSN=用户名:密码@tcp(数据库地址:端口)/数据库名
+      - SQL_DSN=Chatify:sk-chatify-MoLu154!@tcp(database.tenclock.shop:3306)/Cloud
       - SESSION_SECRET=Cloud
       - BATCH_UPDATE_ENABLED=true
       - BATCH_UPDATE_INTERVAL=15
