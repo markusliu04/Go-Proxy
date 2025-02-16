@@ -140,11 +140,11 @@ fi
 
 # 关闭 docker-compose 项目并移除孤立的容器
 echo "关闭 docker-compose 项目并移除孤立的容器..."
-docker-compose down --remove-orphans
+docker compose down --remove-orphans
 
 # 启动服务
 echo "启动服务..."
-docker-compose up -d
+docker compose up -d
 
 # 等待几秒钟，确保容器启动
 sleep 5
